@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_n",
+						"type": "uint256"
+					}
+				],
+				"name": "CheckQuotient",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"fundamentals.sol": "DIVIDE"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"fundamentals.sol": {
+			"keccak256": "0x53265a9a616dfb93a3160b222cf79eb4e8fe7bc9b855a8210c28fe1f2ee8d6ee",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6e6344d72a3c87baf657ab8a1c3c7605d6048c9309f37aaa0257dba1bcb8db1d",
+				"dweb:/ipfs/QmZ2f6BxN1JdrgETYAyLCFPAd2tgYgyJ5SmwiYaXzjdZKV"
+			]
+		}
+	},
+	"version": 1
+}
