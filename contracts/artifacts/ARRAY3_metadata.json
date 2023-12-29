@@ -73,11 +73,11 @@
 	},
 	"sources": {
 		"fundamentals.sol": {
-			"keccak256": "0x53265a9a616dfb93a3160b222cf79eb4e8fe7bc9b855a8210c28fe1f2ee8d6ee",
+			"keccak256": "0x64207454300d61f41c584aa18dcf17c52fc42a7976bee6483e5089825306c3f9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6e6344d72a3c87baf657ab8a1c3c7605d6048c9309f37aaa0257dba1bcb8db1d",
-				"dweb:/ipfs/QmZ2f6BxN1JdrgETYAyLCFPAd2tgYgyJ5SmwiYaXzjdZKV"
+				"bzz-raw://0a089e47a0e2d581e1cf6b0eff02e01a806d8b09cbdc24627a3af963f71d6cf3",
+				"dweb:/ipfs/QmQgPWbGUcTeLfsAroGSj2YrARS4jrgq9YvsP81e8BKz6h"
 			]
 		}
 	},

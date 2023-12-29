@@ -56,10 +56,12 @@ contract CALCULATOR2 {
 contract CALCULATOR3 {
     function square(uint _a) public pure returns (uint){
         return _a * _a;
+        // return _a ** 2;
     }
 
     function cube(uint _a) public pure returns (uint){
         return _a * _a * _a;
+        // return _a ** 3;
     }
 
 }
@@ -153,8 +155,9 @@ contract CHARACTER {
 // 9. 문자형을 입력하면 bytes 형으로 변환하여 반환하는 함수를 구현하세요.
 contract BYTES {
     function toBytes(string memory _a) public pure returns (bytes memory) {
-        bytes memory result = bytes(_a);
-        return result;
+        // bytes memory result = bytes(_a);
+        // return result;
+        return bytes(_a);
     }
 }
 
@@ -244,8 +247,9 @@ contract STUDENTS2 {
     Student[] class;
 
     function addStudent(string memory _name, string[] memory _classes) public {
-        index++;
-        class.push(Student(index, _name, _classes));
+        // index++;
+        // class.push(Student(index, _name, _classes));
+        class.push(Student(class.length+1, _name, _classes));
     }
 
     function getClass() public view returns (Student[] memory){
@@ -302,6 +306,7 @@ contract ARRAY6 {
 
 contract BOOL {
     // 솔리디티에서 string을 엄격연산자로 비교할 수 없는 이유는? string -> byte -> keccak 변환거쳐야 가능...
+    // 솔리디티는 무조건 bytes로 변환하는 것으로 이해하면 된다
     function isBob(string memory _name) public pure returns (bool){
         return (keccak256(bytes(_name)) == keccak256(bytes("Bob")));
     }
@@ -349,5 +354,151 @@ contract ARRAY7{
 
     function getNumbers() public view returns (uint[] memory){
         return numbers;
+    }
+}
+
+// 21. 3의 배수만 들어갈 수 있는 array를 구현하세요.
+contract ARRAY8 {
+    uint[] numbers;
+
+    function addNumber(uint _n) public {
+        require(_n % 3 == 0);
+        numbers.push(_n);
+    }
+
+    function getNumbers() public view returns (uint[] memory){
+        return numbers;
+    }
+}
+
+// 22. 뺄셈 함수를 구현하세요. 임의의 두 숫자를 넣으면 자동으로 둘 중 큰수로부터 작은 수를 빼는 함수를 구현하세요.
+contract SUBTRACT {
+    function minusSmaller(uint _a, uint _b) public pure returns (uint) {
+        if(_a > _b){
+            return _a - _b;
+        } else {
+            return _b - _a;
+        }
+    }
+}
+
+// 23. 3의 배수라면 “A”를, 나머지가 1이 있다면 “B”를, 나머지가 2가 있다면 “C”를 반환하는 함수를 구현하세요.
+contract IF {
+    function returnLetter(uint _n) public pure returns (string memory) {
+        string memory char;
+
+        if(_n % 3 == 0){
+            char = "A";
+        } else if (_n % 3 == 1){
+            char = "B";
+        } else if (_n % 3 == 2) {
+            char = "C";
+        }
+        return char;
+    }
+}
+
+// 24. string을 input으로 받는 함수를 구현하세요. “Alice”가 들어왔을 때에만 true를 반환하세요.
+contract STRING {
+    function isAlice(string memory _name) public pure returns (bool){
+        if(keccak256(abi.encodePacked(_name)) == keccak256(abi.encodePacked("Alice"))){
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+// 25. 배열 A를 선언하고 해당 배열에 n부터 0까지 자동으로 넣는 함수를 구현하세요.
+contract ARRAY9 {
+    uint[] numbers;
+
+    function addNum(uint _n) public {
+        delete numbers;
+
+        for (uint i = _n; i >= 0; i--){
+            numbers.push(i);
+        }
+    }
+
+    function getNum() public view returns (uint[] memory){
+        return numbers;
+    }
+}
+
+// 26. 홀수만 들어가는 array, 짝수만 들어가는 array를 구현하고 숫자를 넣었을 때 자동으로 홀,짝을 나누어 입력시키는 함수를 구현하세요.
+contract ARRAY10 {
+    uint[] evens;
+    uint[] odds;
+
+    function addNum(uint _n) public {
+        if(_n % 2 == 0){
+            evens.push(_n);
+        } else  {
+            odds.push(_n);
+        }
+    }
+
+    function getArrays() public view returns (uint[] memory, uint[] memory){
+        return (evens, odds);
+    }
+}
+
+// 27. string 과 bytes32를 key-value 쌍으로 묶어주는 mapping을 구현하세요. 해당 mapping에 정보를 넣고, 지우고 불러오는 함수도 같이 구현하세요.
+contract MAPPING2 {
+    mapping(string => bytes32) keyValue;
+
+    function addKeyValue(string memory _key, bytes32 _value) public {
+        keyValue[_key] = _value;
+    }
+
+    function getValue(string memory _key) public view returns (bytes32){
+        return keyValue[_key];
+    }
+}
+
+// 28. ID와 PW를 넣으면 해시함수(keccak256)에 둘을 같이 해시값을 반환해주는 함수를 구현하세요.
+contract HASH {
+    function getHash(string memory _id, string memory _pw) public pure returns (bytes32) {
+        return keccak256(abi.encodePacked(_id, _pw));
+    }
+}
+
+// 29. 숫자형 변수 a와 문자형 변수 b를 각각 10 그리고 “A”의 값으로 배포 직후 설정하는 contract를 구현하세요.
+contract CONSTRUCTOR {
+    uint a;
+    string b;
+
+    constructor(){
+        a = 10;
+        b = "A";
+    }
+
+    function getVariable() public view returns (uint, string memory){
+        return (a, b);
+    }
+}
+
+// 30. 임의대로 숫자를 넣으면 알아서 내림차순으로 정렬해주는 함수를 구현하세요
+contract SORT {
+    uint[] numbers;
+
+    function addNum(uint _n) public {
+        numbers.push(_n);
+    }
+
+    function getNum() public view returns (uint[] memory){
+        return numbers;
+    }
+
+    function sortDesc() public {
+        for(uint i = 0; i < numbers.length; i++){
+            for(uint j = i + 1; j < numbers.length; j++){
+                if(numbers[i] < numbers[j]){
+                    (numbers[i], numbers[j]) = (numbers[j], numbers[i]);
+                }
+            }
+        }
+
     }
 }
